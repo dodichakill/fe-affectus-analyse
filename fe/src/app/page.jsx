@@ -13,7 +13,7 @@ import { FaCommentDots, FaTags, FaTrash } from "react-icons/fa";
 export default function Home() {
   const [value, setValue] = React.useState("");
   const [output, setOutput] = React.useState("");
-  const [showModal, setShowModal] = React.useState(true);
+  const [showModal, setShowModal] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,10 +48,13 @@ export default function Home() {
   return (
     <>
       {showModal && (
-        <div className="w-full h-screen p-10 rounded-lg">
+        <div className="w-full h-screen p-10 absolute top-0 left-0 right-0 bottom-0 bg-slate-700/75 z-[9999]">
           <div className="space-y-6 flex items-center justify-center flex-col">
-            <div className="p-5 rounded-lg bg-slate-100 w-full max-w-6xl m-auto text-lg flex items-center gap-5 flex-col">
-              <h1 className="text-2xl text-center">Analyzed Result</h1>
+            <div className="p-5 rounded-lg bg-slate-100 w-full max-w-4xl m-auto text-lg justify-center flex items-center gap-5 flex-col">
+              <h1 className="text-2xl underline underline-offset-4 text-center font-semibold">
+                Analyzed Result
+              </h1>
+
               <div className="w-full flex gap-5 items-center">
                 <div className="">
                   <FaCommentDots className="text-3xl text-gray-800" />
