@@ -2,11 +2,18 @@
 import axios from "axios";
 import Image from "next/image";
 import React from "react";
+import {
+  FaFaceFrown,
+  FaFaceGrimace,
+  FaFaceMeh,
+  FaFaceSmile,
+} from "react-icons/fa6";
+import { FaCommentDots, FaTags, FaTrash } from "react-icons/fa";
 
 export default function Home() {
   const [value, setValue] = React.useState("");
   const [output, setOutput] = React.useState("");
-  const [showModal, setShowModal] = React.useState(false);
+  const [showModal, setShowModal] = React.useState(true);
   const [loading, setLoading] = React.useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,8 +31,8 @@ export default function Home() {
       },
     })
       .then((res) => {
-        consola.info(res);
-        consola.info(
+        console.log(res);
+        console.log(
           `Sentimet of text "${res.data.analyzed_sentiment.text}" is "${res.data.analyzed_sentiment.type}"`
         );
         setOutput(res.data.analyzed_sentiment);
@@ -42,8 +49,9 @@ export default function Home() {
     <>
       {showModal && (
         <div className="w-full h-screen p-10 rounded-lg">
-          <div className="space-y-6">
-            <div className="p-5 rounded-lg bg-slate-100 text-lg flex items-center gap-5 flex-col">
+          <div className="space-y-6 flex items-center justify-center flex-col">
+            <div className="p-5 rounded-lg bg-slate-100 w-full max-w-6xl m-auto text-lg flex items-center gap-5 flex-col">
+              <h1 className="text-2xl text-center">Analyzed Result</h1>
               <div className="w-full flex gap-5 items-center">
                 <div className="">
                   <FaCommentDots className="text-3xl text-gray-800" />
@@ -86,7 +94,9 @@ export default function Home() {
               className="bg-blue-500 px-5 py-2 text-white text-2xl rounded-lg flex items-center gap-5"
               onClick={() => setShowModal(false)}
               type="button"
-            ></button>
+            >
+              Tutup
+            </button>
           </div>
         </div>
       )}
